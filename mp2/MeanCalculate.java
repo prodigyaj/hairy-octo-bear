@@ -56,7 +56,7 @@ public class MeanCalculate {
 		Configuration conf = new Configuration();
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		if (otherArgs.length != 2) {
-			System.err.println("Usage: wordcount <in> <out>");
+			System.err.println("Usage: meancalc <in> <out>");
 			System.exit(2);
 		}
 		Job job = new Job(conf, "mean calc");
