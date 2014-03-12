@@ -1,16 +1,5 @@
 import java.io.IOException;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.util.GenericOptionsParser;
-
 public class WordCount {
 
   public static class TokenizerMapper
@@ -24,7 +13,9 @@ public class WordCount {
 String[] newItr = value.toString().split("[\\s\\.\\?]+");
 for (int x = 0;x < newItr.length; x++)
 {
-	System.out.println(newItr[x]);
+	//System.out.println(newItr[x]);
+	if(newItr[x].length() == 0)
+		continue;
 	word.set(newItr[x]);
 	context.write(word, one);
 }
@@ -66,4 +57,3 @@ FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
 System.exit(job.waitForCompletion(true) ? 0 : 1);
 }
 }
-
